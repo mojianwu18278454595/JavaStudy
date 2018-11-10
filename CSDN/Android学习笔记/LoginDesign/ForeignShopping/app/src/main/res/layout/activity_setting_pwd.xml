@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    tools:context="fs.foreignshopping.Login.SettingPwdActivity">
+
+    <include layout="@layout/registertitle"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="25dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/textView_rgsrPwd"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="密     码"
+            android:textColor="@android:color/black"
+            android:textSize="18sp"/>
+
+        <EditText
+            android:id="@+id/editText_rgsrPwd"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:ems="10"
+            android:hint="请设置密码"
+            android:inputType="textPassword"
+            />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="25dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/textView_rgsrPwdAgain"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="确认密码"
+            android:textColor="@android:color/black"
+            android:textSize="18sp"/>
+
+        <EditText
+            android:id="@+id/editText_rgsrPwdAgain"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:ems="10"
+            android:hint="请确认密码"
+            android:inputType="textPassword"/>
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/button_rgsrPwdSubmit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="25dp"
+        android:layout_weight="1"
+        android:background="#F65327"
+        android:text="确定"
+        android:textColor="@android:color/white"/>
+</LinearLayout>

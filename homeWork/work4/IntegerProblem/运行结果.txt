@@ -1,0 +1,41 @@
+
+	                //  方法1
+		Integer a=new Integer(12);
+		Integer b=a;
+		System.out.println("将a对象赋值给b对象后：");
+		System.out.println("a:"+a);
+		System.out.println("b:"+b);
+		System.out.println("a:"+a.hashCode());
+		
+		a=Integer.valueOf(56);
+		System.out.println("给b对象赋予新的值后：");
+		System.out.println("a:"+a);
+		System.out.println("b:"+b);
+		System.out.println("a:"+a.hashCode());
+		
+		//方法2
+		Integer a1 = 200;
+		Integer b1 = a1;
+		System.out.println("将a对象赋值给b对象后：");
+		System.out.println("a1=" + a1);
+		System.out.println("b1=" + b1);
+		
+		
+		Field field = null;
+		field = a1.getClass().getDeclaredField("value");
+		System.out.println("field："+field);
+		field.setAccessible(true);
+		field.set(a1, 5000);
+		
+		System.out.println("给a1对象赋予新的值后：");
+		System.out.println("a1=" + a1);
+		System.out.println("b1=" + b1);
+
+                    说明：方法1和方法2得到的结果不一样：方法1中a重新赋值后a!=b;
+                                                                              方法2中a1重新复制后a1=b1
+                    分析：方法2中是利用Java中的reflection机制来取出a1的Field，然后利
+                              用field来给a1赋值，所以方法2的结果一定是对的；
+                              方法1中给a赋值是利用a=Integer.valueOf( );这种赋值方式跟我们
+                              要探讨的Integer赋值是一样的，相当于要证明一个东西我却用这个
+                              东西来证明本身，肯定是有问题的。
+                    结论：Integer在赋值时，不是拷贝，是引用。
