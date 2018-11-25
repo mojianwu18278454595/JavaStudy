@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+    <hibernate-mapping>
+    	<!-- 创建类表映射 -->
+    	<class name="com.yhy.model.UserInfo" table="tb_user">
+    	
+    		<!-- 创建主键映射 -->
+    		<id name="user_id" column="user_id">
+    			<generator class="native"/>
+    		</id>
+    		
+    		<!-- 创建普通属性与表中字段映射 -->
+    		<property name="user_name"/>
+    		<property name="user_pwd"/>
+    		<property name="user_gender"/>
+    		<property name="user_tel"/>
+    		<property name="user_address"/>
+    		<property name="user_type"/>
+			
+			<!-- 配置many-to-many -->
+			 <set name="user_goodsInfos" table="tb_car" cascade="save-update,delete" lazy="false">
+				<key column="car_user_id"/>
+				<many-to-many class="com.yhy.model.GoodsInfo" column="car_goods_id"/>
+			</set>
+						
+    	</class> 
+    </hibernate-mapping>
