@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+
+    <package name="UserInfo" extends="struts-default" namespace="/">
+    	
+    	<!-- 定义拦截器栈 -->
+    	<interceptors>
+    		<interceptor name="privilagelInterceptor" class="com.yhy.web.interceptor.privilagelInterceptor"/>
+    		
+    		<interceptor-stack name="loginPrivilage">
+    			<interceptor-ref name="defaultStack"/>
+    			<interceptor-ref name="privilagelInterceptor"/>
+    		</interceptor-stack>
+    	</interceptors>
+    	
+    	<global-results>
+    		<result name="error">${pageContext.request.contextPath }/style/myLogin.jsp</result>
+    	</global-results>
+
+    	<action name="user_*" class="com.yhy.web.action.UserAction" method="{1}">
+    		<result name="login" type="dispatcher">/main/main.jsp</result>
+    		<result name="errorRegister">/style/myRegister.jsp</result>	
+    	</action>
+    	
+    	<action name="myDetail" class="com.yhy.web.action.MyDetailAction">
+    		<result>/main/myDetail.jsp</result>
+    		<interceptor-ref name="loginPrivilage"/>
+    	</action>
+    	
+    	<action name="goodsInfo" class="com.yhy.web.action.ShoppingAction" method="select">
+    		<result>/goodsInfo.jsp</result>
+    	</action>
+    	
+    	<action name="goodsCar" class="com.yhy.web.action.ShoppingCarAction" method="addOrDelCar">
+    		<result>/car.jsp</result>
+    		<interceptor-ref name="loginPrivilage"/>
+    	</action>
+    	   	
+    </package>
+    
+
+</struts>
