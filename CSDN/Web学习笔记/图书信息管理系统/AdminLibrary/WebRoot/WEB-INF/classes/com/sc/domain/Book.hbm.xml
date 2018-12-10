@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+    <hibernate-mapping>
+    	<!-- 创建类表映射 -->
+    	<class name="com.sc.domain.Book" table="tb_book" lazy="true">
+    	
+    		<!-- 创建主键映射 -->
+    		<id name="bk_id" column="bk_id">
+    			<generator class="native"/>
+    		</id>
+    		
+    		<!-- 创建普通属性与表中字段映射 -->
+    		<property name="bk_code"/>
+    		<property name="bk_name"/>
+    		<property name="bk_author"/>
+    		<property name="bk_press"/>
+    		<property name="bk_datePress"/>
+    		<property name="bk_ISBN"/>
+    		<property name="bk_catalog"/>
+    		<property name="bk_language"/>
+    		<property name="bk_pages"/>
+    		<property name="bk_price"/>
+    		<property name="bk_dateIn"/>
+    		<property name="bk_brief"/>
+    		<property name="bk_cover"/>
+    		<property name="bk_status"/>
+		
+					<!-- 配置many—to-many -->
+				<set name="readers" table="tb_borrow" cascade="save-update,delete" inverse="true">
+					<key column="bw_bk_id"/>
+					<many-to-many class="com.sc.domain.Reader" column="bw_rd_id"/>	
+				</set>
+				
+    	</class>
+    </hibernate-mapping>

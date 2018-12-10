@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-module
+  type="WEB"
+  name="AdminLibrary"
+  id="myeclipse.1543822867860"
+  context-root="/AdminLibrary"
+  j2ee-spec="6.0"
+  archive="AdminLibrary.war">
+  <attributes>
+    <attribute name="webrootdir" value="WebRoot" />
+  </attributes>
+</project-module>
+

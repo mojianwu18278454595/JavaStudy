@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+    <hibernate-mapping>
+    	<!-- 创建类表映射 -->
+    	<class name="com.sc.domain.Borrow" table="tb_borrow">
+    	
+    		<!-- 创建主键映射 -->
+    		<id name="bw_id" column="bw_id">
+    			<generator class="native"/>
+    		</id>
+    		
+    		<!-- 创建普通属性与表中字段映射 -->
+    		<property name="bw_rd_id"/>
+    		<property name="bw_bk_id"/>
+    		<property name="bw_idContinueTimes"/>
+    		<property name="bw_idDateOut"/>
+    		<property name="bw_idDateRetPlan"/>
+    		<property name="bw_idDateRetAct"/>
+    		<property name="bw_idOverDay"/>
+    		<property name="bw_idOverMoney"/>
+    		<property name="bw_idPunishMoney"/>
+    		<property name="bw_isHasReturn"/>
+    		<property name="bw_operatorLend"/>
+    		<property name="bw_operatorRet"/>
+				
+    	</class>
+    </hibernate-mapping>

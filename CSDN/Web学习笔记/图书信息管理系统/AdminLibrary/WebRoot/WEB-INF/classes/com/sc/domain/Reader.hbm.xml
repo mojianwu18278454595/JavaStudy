@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+    <hibernate-mapping>
+    	<class name="com.sc.domain.Reader" table="tb_reader">
+    			<id name="rd_id" column="rd_id">
+    				<generator class="native"/>
+    			</id>
+    			
+    			<property name="rd_name"/>
+    			<property name="rd_sex"/>
+    			<property name="rd_dept"/>
+    			<property name="rd_phone"/>
+    			<property name="rd_email"/>
+    			<property name="rd_dateReg"/>
+    			<property name="rd_photo"/>
+    			<property name="rd_status"/>
+    			<property name="rd_borrowQty"/>
+    			<property name="rd_pwd"/>
+    			<property name="rd_adminRoles"/>
+    			
+    			<!-- 配置多对一关系 -->
+    			<!-- name:one的那一方对应属性 ；class：one的那一方对应类的路径； many那一方数据库中的外键 -->
+    			<many-to-one name="readerType" fetch="select" lazy="proxy" cascade="save-update,delete" class="com.sc.domain.ReaderType" column="rd_type"/>
+    		
+    			<!-- 配置many—to-many -->
+				<set name="books" table="tb_borrow" cascade="save-update,delete" inverse="false">
+					<key column="bw_rd_id"/>
+					<many-to-many class="com.sc.domain.Book" column="bw_bk_id"/>	
+				</set>
+    	
+    	</class>
+    </hibernate-mapping>
+    

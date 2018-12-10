@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+	
+    <package name="adminLibrary" extends="struts-default" namespace="/">
+    	<interceptors>
+    		
+    		<!-- 登录过滤 -->
+    		<interceptor name="loginInterceptor" class="com.sc.web.interceptor.loginInterceptor">
+    			<param name="excludeMethods">login</param>
+    		</interceptor>
+    		
+    		<!-- 读者办理权限过滤 -->
+    		<interceptor name="readerInterceptor" class="com.sc.web.interceptor.ReaderInterceptor">
+    			<param name="excludeMethods">login,changePwd,securityExit</param>
+    		</interceptor>
+    		
+    		<!-- 图书办理权限过滤 -->
+    		<interceptor name="bookInterceptor" class="com.sc.web.interceptor.BookInterceptor"/>
+      		
+    		<!-- 借阅办理权限过滤 -->
+    		<interceptor name="borrowInterceptor" class="com.sc.web.interceptor.BorrowInterceptor"/>
+    		
+    		 <!-- 缴费办理权限过滤 -->
+    		<interceptor name="punishMoneyInterceptor" class="com.sc.web.interceptor.PunishMoneyInterceptor"/>
+    		
+    		<!-- 登录权限过滤栈 -->
+    		<interceptor-stack name="loginStack">
+    			<interceptor-ref name="defaultStack"/>
+    			<interceptor-ref name="loginInterceptor"/>
+    		</interceptor-stack>
+    		
+    		<!-- 读者办理权限过滤栈 -->
+    		<interceptor-stack name="readerStack">
+    			<interceptor-ref name="defaultStack"/>
+    			<interceptor-ref name="readerInterceptor"/>
+    		</interceptor-stack>
+    		
+    		<!-- 图书办理权限过滤栈 -->
+    		<interceptor-stack name="bookStack">
+    			<interceptor-ref name="defaultStack"/>
+    			<interceptor-ref name="bookInterceptor"/>
+    		</interceptor-stack>
+    		
+    		<!-- 借阅办理权限过滤栈 -->
+    		<interceptor-stack name="borrowStack">
+    			<interceptor-ref name="defaultStack"/>
+    			<interceptor-ref name="borrowInterceptor"/>
+    		</interceptor-stack>
+    		
+    		<!-- 缴费办理权限过滤栈 -->
+    		<interceptor-stack name="punishMoneyStack">
+    			<interceptor-ref name="defaultStack"/>
+    			<interceptor-ref name="punishMoneyInterceptor"/>
+    		</interceptor-stack>
+    	</interceptors>
+    	
+    
+    	<global-results>
+    		<result name="error">/login.jsp</result>
+    		<result name="right">/jsp/error.jsp</result>
+    	</global-results>
+    
+    	    	
+    	<action name="reader_*" class="com.sc.web.action.ReaderAction" method="{1}">
+    		<interceptor-ref name="loginStack"/>
+    		<interceptor-ref name="readerStack"/>
+    		<result name="login" type="redirect">/index.jsp</result>
+    		<result name="securityExit">/login.jsp</result>
+    		<result name="add">/jsp/Reader/add.jsp</result>
+    		<result name="select">/jsp/Reader/list.jsp</result>
+    		<result name="showEdit">/jsp/Reader/edit.jsp</result>
+    		<result name="edit">/jsp/Reader/list.jsp</result>
+    		<result name="operation" type="chain">reader_showEdit</result>
+    		<result name="changePwd">/login.jsp</result>
+    		<result name="addJsp">/jsp/Reader/add.jsp</result>
+    		<result name="editJsp">/jsp/Reader/list.jsp</result>
+    	</action>
+    	
+    	
+    	<action name="book_*" class="com.sc.web.action.BookAction" method="{1}">
+    		<interceptor-ref name="loginStack"/>
+    		<interceptor-ref name="bookStack"/>
+    		<result name="add">/jsp/Book/add.jsp</result>
+    		<result name="edit">/jsp/Book/list.jsp</result>
+    		<result name="delete">/jsp/Book/list.jsp</result>
+    		<result name="select">/jsp/Book/list.jsp</result>
+    		<result name="showEdit">/jsp/Book/edit.jsp</result>
+    		<result name="addJsp">/jsp/Book/add.jsp</result>
+    		<result name="editJsp">/jsp/Book/list.jsp</result>
+    	</action>
+    	
+    	
+    	<action name="borrow_*" class="com.sc.web.action.BorrowAction" method="{1}">
+    		<interceptor-ref name="loginStack"/>
+    		<interceptor-ref name="borrowStack"/>
+    		<result name="borrow">/jsp/Borrow/borrow.jsp</result>
+    		<result name="back">/jsp/Borrow/back.jsp</result>
+    		<result name="renewal">/jsp/Borrow/renewal.jsp</result>
+    		<result name="borrowJsp">/jsp/Borrow/borrow.jsp</result>
+    		<result name="backJsp">/jsp/Borrow/back.jsp</result>
+    		<result name="renewalJsp">/jsp/Borrow/renewal.jsp</result>
+    	</action>
+    	
+    	<action name="compSelect_*" class="com.sc.web.action.CompSelectAction" method="{1}">
+    		<interceptor-ref name="loginStack"/>
+    		<interceptor-ref name="punishMoneyStack"/>
+    		<result name="bookBw">/jsp/CompSelect/bookBw.jsp</result>
+    		<result name="readerBw">/jsp/CompSelect/readerBw.jsp</result>
+    		<result name="punishMoney">/jsp/CompSelect/readerBw.jsp</result>
+    		<result name="showPunish">/jsp/CompSelect/punishMoney.jsp</result>
+    		<result name="bookBwJsp">/jsp/CompSelect/bookBw.jsp</result>
+    		<result name="readerBwJsp">/jsp/CompSelect/readerBw.jsp</result>
+    	</action>
+    </package>
+
+</struts>

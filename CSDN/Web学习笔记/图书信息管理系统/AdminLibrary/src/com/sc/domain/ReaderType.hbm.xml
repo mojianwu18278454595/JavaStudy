@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+    <hibernate-mapping>
+    	<!-- 创建类表映射 -->
+    	<class name="com.sc.domain.ReaderType" table="tb_reader_type" lazy="false">
+    	
+    		<!-- 创建主键映射 -->
+    		<id name="type_id" column="type_id">
+    			<generator class="native"/>
+    		</id>
+    		
+    		<!-- 创建普通属性与表中字段映射 -->
+    		<property name="type_name"/>
+    		<property name="type_canLendQty"/>
+    		<property name="type_canLendDay"/>
+    		<property name="type_canContinueTimes"/>
+    		<property name="type_punishRate"/>
+    		<property name="type_dateVaild"/>
+				
+				<!-- 配置one—to-many -->
+				<set name="readers" cascade="save-update,delete" fetch="select" lazy="true" batch-size="3">
+					<key column="rd_type"/>
+					<one-to-many class="com.sc.domain.Reader"/>	
+				</set>
+				
+    	</class> 
+    </hibernate-mapping>

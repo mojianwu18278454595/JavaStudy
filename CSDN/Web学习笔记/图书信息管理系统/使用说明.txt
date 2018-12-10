@@ -1,0 +1,12 @@
+
+
+**************************************************************************************
+ 运行前先更改配置文件：
+localRdImgPath=E:\\image\\readerImg\\     读者图片本地文件夹
+tomcatRdImgPath=image/readerImg/         读者图片Tomcat根路径下的文件夹
+localBkImgPath=E:\\image\\bookImg\\       图书图片本地文件夹
+tomcatBkImgPath=image/bookImg/            图书图片Tomcat根路径下的文件夹
+tomcat根目录：
+   电脑Tomcat安装目录下：apache-tomcat-7.0.39-x64\webapps\AdminLibrary\
+
+****************************************************************************************
